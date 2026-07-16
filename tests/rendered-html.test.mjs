@@ -32,7 +32,8 @@ test("server-renders the personal homepage", async () => {
   assert.match(html, /asiuvxmcn 的个人主页/);
   assert.match(html, /你好，我是 asiuvxmcn/);
   assert.match(html, /asiuvxmcn\.github\.io\/new\/main/);
-  assert.match(html, /\/posts\/2026-07-16-public-home\.html/);
+  assert.match(html, /\/posts\/2026-07-16-ios-clang-llvm-bitcode\.html/);
+  assert.doesNotMatch(html, /href="#projects"/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|SkeletonPreview/);
 });
 
@@ -42,16 +43,18 @@ test("keeps a GitHub Pages static entry", async () => {
     readFile(new URL("../styles.css", import.meta.url), "utf8"),
     readFile(new URL("../README.md", import.meta.url), "utf8"),
     readFile(new URL("../docs/how-to-publish.md", import.meta.url), "utf8"),
-    readFile(new URL("../posts/2026-07-16-public-home.html", import.meta.url), "utf8"),
+    readFile(new URL("../posts/2026-07-16-ios-clang-llvm-bitcode.html", import.meta.url), "utf8"),
   ]);
 
   assert.match(indexHtml, /<title>asiuvxmcn 的个人主页<\/title>/);
-  assert.match(indexHtml, /\.\/posts\/2026-07-16-public-home\.html/);
+  assert.match(indexHtml, /\.\/posts\/2026-07-16-ios-clang-llvm-bitcode\.html/);
   assert.doesNotMatch(indexHtml, /href="\.\/_posts\/.*\.md"/);
   assert.match(indexHtml, /https:\/\/github\.com\/asiuvxmcn\/asiuvxmcn\.github\.io/);
   assert.match(styles, /color-scheme:\s*light/);
+  assert.match(styles, /\.article-content img/);
   assert.match(styles, /\.article-card/);
-  assert.match(article, /给公开主页留一点生长空间/);
+  assert.match(article, /ios逆向 clang LLVM bitcode 名词解析/);
+  assert.match(article, /assets\/ios-clang-llvm-bitcode/);
   assert.match(article, /\.\.\/styles\.css/);
   assert.match(readme, /https:\/\/asiuvxmcn\.github\.io\//);
   assert.match(guide, /GitHub Pages/);

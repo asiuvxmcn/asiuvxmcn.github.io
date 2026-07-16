@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ios逆向 clang LLVM bitcode 名词解析 之后需要 · asiuvxmcn</title>
+    <meta name="description" content="https://xie.infoq.cn/article/c32df7f080f357424d46f379e 将oc代码转为c/c++源码的方法 xcrun -sdk iphoneos clang -arch arm64 -rewrit…" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="article-page">
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="../" aria-label="返回 asiuvxmcn 个人主页">
+          <span class="avatar">A</span>
+          <span>
+            <strong>asiuvxmcn</strong>
+            <small>iOS 开发笔记</small>
+          </span>
+        </a>
+        <nav>
+          <a href="../#stack">技能栈</a>
+          <a href="../#posts">文章</a>
+          <a class="write" href="https://github.com/asiuvxmcn/asiuvxmcn.github.io/edit/main/posts/2026-07-16-ios-clang-llvm-bitcode.html">编辑本文</a>
+        </nav>
+      </header>
+
+      <article class="article-card imported-note">
+        <header>
+          <p class="article-label">印象笔记迁移 · iOS 逆向</p>
+          <h1>ios逆向 clang LLVM bitcode 名词解析 之后需要</h1>
+          <p class="article-meta">2026-07-16 · 从印象笔记 HTML 导出整理 · Objective-C / Clang / LLVM / Bitcode</p>
+          <div class="article-tags">
+            <span>iOS</span>
+            <span>Objective-C</span>
+            <span>Clang</span>
+            <span>LLVM</span>
+            <span>Bitcode</span>
+            <span>逆向分析</span>
+          </div>
+        </header>
+        <div class="article-content note-content">
+<div><span><a href="https://xie.infoq.cn/article/c32df7f080f357424d46f379e" target="_blank" rel="noopener">https://xie.infoq.cn/article/c32df7f080f357424d46f379e</a></span></div><div><span>将oc代码转为c/c++源码的方法</span></div><div><span>xcrun -sdk iphoneos clang -arch arm64 -rewrite-objc </span><span>-fobjc-arc </span><span>/Users/szht/Downloads/Test0/Test0/ViewController.m -o /Users/szht/Downloads/Test0/1231232/vc.cpp</span></div><div>也可以换成 <span>iphonesimulator</span></div><div>定义</div><div><span>Clang</span><span>是一个</span><span>C</span><span>、</span><span>C++</span><span>、</span><span>Objective-C</span><span>语言的轻量级编译器。</span></div><div><span>说一些我自己的话。</span></div><div><span>clang是基于llvm架构的编译器。</span></div><div><span>什么是llvm？</span></div><div><span>简单来说就是多对一对多的架构。</span></div><div><span>分为前段 — 优化 — 后端 三个层面</span></div><div><span>对应</span></div><div><span>词法分析 语法分析 生成中间代码 — 代码优化 — 生成指定架构可执行文件</span></div><div><span>支持多种语言编写 例如（oc swift c c++）通过同一编译器（clang）</span></div><div><span>翻译为系统接受的可执行文件（arm64 x86等等不同框架下的程序</span><span>）</span></div><div><span>这个架构的优势在于灵活 拓展性强。</span></div><div><span>前后独立 </span></div><div><span>添加语言不需要额外修改编译后支持的可执行文件格式。</span></div><div><span>添加支持的处理器架构 不需要额外添加编程语言的支持。</span></div><div><span>只需要对llvm的编译器支持进行适配即可。</span></div><div><span>clang的编译分为前端和后端，前端主要做的是</span></div><div><span>代码的词法分析语法分析 生成中间代码，</span></div><div><span>后端为代码的优化 生成目标程序。</span></div><div><span>（就是下边的那个图）</span></div><div><span><span>额外说一句 clang 不支持swift swift使用的编译器是SwiftC</span></span></div><div><span>针对于混编的情况 通过桥接文件进行对接 </span></div><div><span>除此之外各编译各的。</span></div><div><span>大概就这些。</span></div><h4><span>什么是</span><a href="https://links.jianshu.com/go?to=http%3A%2F%2Fclang.llvm.org%2F" target="_blank" rel="noopener">Clang</a><span></h4><div><span>LLVM项目的一个子项目，基于LLVM架构的C/C++/Objective-C编译器前端。
+</span></div><div><span>相比于GCC，Clang具有如下优点</span></div><ul><li><div>编译速度快:在某些平台上，Clang的编译速度显著的快过GCC(Debug模式下编译OC速度比GGC快3倍)</div></li><li><div>占用内存小:Clang生成的AST所占用的内存是GCC的五分之一左右</div></li><li><div>模块化设计:Clang采用基于库的模块化设计，易于 IDE 集成及其他用途的重用</div></li><li><div>诊断信息可读性强:在编译过程中，Clang 创建并保留了大量详细的元数据 (metadata)，有利于调试和错误报告</div></li><li><div>设计清晰简单，容易理解，易于扩展增强</div></li></ul><div><img src="./assets/ios-clang-llvm-bitcode/C9F7C35C-677B-4F98-BBD7-60D1E230C45C.png"/><br/></div><div>可以将代码进行语言间的编译转换。</div><div>基于LLVM架构</div><div>什么是llvm？<a href="https://www.jianshu.com/p/692f141d26d5" target="_blank" rel="noopener">https://www.jianshu.com/p/692f141d26d5</a></div><div><a href="https://www.jianshu.com/p/1367dad95445" target="_blank" rel="noopener">https://www.jianshu.com/p/1367dad95445</a></div><div>Llvm为编译器的架构，clang就是基于这个架构开发的编译器工具，</div><div>将编译型语言的代码翻译为机器可执行的c c++ 汇编代码等。</div><div><img src="./assets/ios-clang-llvm-bitcode/1645EF06-647B-44ED-88D1-429C49AF30D3.png"/><br/></div><ul><li><div>不同的前端后端使用统一的中间代码LLVM Intermediate Representation (LLVM IR)</div></li><li><div>如果需要支持一种新的编程语言，那么只需要实现一个新的前端</div></li><li><div>如果需要支持一种新的硬件设备，那么只需要实现一个新的后端</div></li><li><div>优化阶段是一个通用的阶段，它针对的是统一的LLVM IR，不论是支持新的编程语言，还是支持新的硬件设备，都不需要对优化阶段做修改</div></li><li><div>相比之下，GCC的前端和后端没分得太开，前端后端耦合在了一起。所以GCC为了支持一门新的语言，或者为了支持一个新的目标平台，就 变得特别困难</div></li><li><div>LLVM现在被作为实现各种静态和运行时编译语言的通用基础结构(GCC家族、Java、.NET、Python、Ruby、Scheme、Haskell、D等)</div></li></ul><div>语法分析 词法分析的详细解析：<a href="https://www.jianshu.com/p/692f141d26d5" target="_blank" rel="noopener">https://www.jianshu.com/p/692f141d26d5</a></div><div><img src="./assets/ios-clang-llvm-bitcode/CC8711E6-A3B3-4701-AE28-271F6F5EFA9B.png"/><br/></div><div><span>bitcode</span></div><div>:<a href="https://www.jianshu.com/p/5ec109850141" target="_blank" rel="noopener">https://www.jianshu.com/p/5ec109850141</a></div><div>为什么有些sdk会需要关闭bitcode</div><div>bonus：</div><div>clang 常用指令：</div><div>1、-dump-tokens :运行预处理器，拆分内部代码段为各种token</div><div>2、-ast-dump :构建抽象语法书AST</div><div>3、-emit-llvm :使用LLVM描述汇编和对象文件</div><div>4、-fmodules :使用modules的语言特性</div><div>5、-fsyntax-only : 防止编译器生成代码，只是语法级别的说明和修改</div><div>6、-fobjc-arc: 再ARC环境下，为Objective-C对象生成retain和release的调用</div><div>7、-fno-objc-arc: 在MRC环境下使用</div><div>8、-rewrite-objc: 将Objective-C源码重写为C++</div><div>9、-Xclang: 像Clang编译器传递参数</div><div>10、-c: 只运行预处理，编译和汇编步骤</div><div>11、-C: 在预处理输出中包含注释</div><div>12、-g: 在可执行程勋中包含标准调试信息</div><div>13、-l: 在头文件的搜索路径列表中添加dir目录</div><div>14、-L: 在库 文件的搜索路径列表中添加dir目录</div><div>15、-0: 输出.o文件</div><div>16、-S: 生成.s汇编文件</div><div>17、-E: 查看预处理结果</div><div>18、-ccc-print-phases: 查看编译步骤</div><div>19、链接两个.o文件 ：clang xxx.o xxx.0 -Wl,xcrun --show-sdk-path/System/Library/Frameworks/Foundation.framework/Foundation
+</div>
+        </div>
+        <footer class="article-footer">
+          <a class="button primary" href="../#posts">返回文章列表</a>
+          <a class="button" href="https://github.com/asiuvxmcn/asiuvxmcn.github.io">查看仓库</a>
+        </footer>
+      </article>
+    </main>
+  </body>
+</html>

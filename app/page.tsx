@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BookOpen, Code2, ExternalLink, GitBranch, PenLine } from "lucide-react";
+import { BookOpen, Code2, ExternalLink, PenLine } from "lucide-react";
 
 const githubUser = "asiuvxmcn";
 const repoName = `${githubUser}.github.io`;
@@ -7,19 +7,22 @@ const repoUrl = `https://github.com/${githubUser}/${repoName}`;
 const newPostUrl = `${repoUrl}/new/main?filename=_posts/2026-07-16-new-note.md`;
 
 const stack = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "GitHub Pages",
-  "Markdown",
-  "自动化",
-  "AI Agents",
-  "文档整理",
+  "iOS",
+  "Objective-C",
+  "Runtime",
+  "UIKit",
+  "Xcode",
+  "Clang / LLVM",
+  "Swift",
+  "SwiftUI",
+  "CocoaPods",
+  "工程化",
+  "逆向分析",
+  "性能调试",
 ];
 
 const posts = [
+  ["2026-07-16", "iOS 逆向：Clang、LLVM 与 Bitcode 名词梳理", "从 Objective-C 重写为 C/C++、Clang 前后端和 LLVM 架构说起，保留了原笔记配图。", "/posts/2026-07-16-ios-clang-llvm-bitcode.html"],
   ["2026-07-16", "我的 AI 工作流应该长什么样", "把重复判断、资料整理和发布流程交给工具，人负责方向感。", "/posts/2026-07-16-ai-workflow.html"],
   ["2026-07-16", "GitHub Pages 个人主页搭建笔记", "从仓库命名、Pages 发布到文章页样式的第一版记录。", "/posts/2026-07-16-github-pages-notes.html"],
   ["2026-07-16", "一次终端 GitHub 代理排查", "SourceTree 能拉取，终端 Git 却超时，背后是代理端口不一致。", "/posts/2026-07-16-terminal-proxy.html"],
@@ -45,7 +48,6 @@ export default function Home() {
         </a>
         <nav>
           <a href="#stack">技能栈</a>
-          <a href="#projects">项目</a>
           <a href="#posts">文章</a>
           <a className="write" href={newPostUrl}>
             <PenLine size={15} aria-hidden="true" />
@@ -59,13 +61,13 @@ export default function Home() {
           <p className="kicker">README.md</p>
           <h1>你好，我是 asiuvxmcn。</h1>
           <p className="lead">
-            这里是我的公开工作台：放文章、项目线索、工具笔记和逐渐长出来的知识库。先把入口搭稳，内容慢慢住进来。
+            我主要做 iOS 开发，尤其熟悉 Objective-C；Swift、SwiftUI、工程化和逆向相关内容也在持续整理。这里会慢慢变成我的开发心得索引。
           </p>
           <div className="badges" aria-label="主页标签">
-            <span>GitHub Pages</span>
-            <span>中文笔记</span>
-            <span>AI 工作流</span>
-            <span>工具沉淀</span>
+            <span>iOS 开发</span>
+            <span>Objective-C</span>
+            <span>Swift</span>
+            <span>SwiftUI</span>
           </div>
           <div className="actions">
             <a className="button primary" href="#posts">
@@ -84,13 +86,13 @@ export default function Home() {
             <span className="avatar large">A</span>
             <div>
               <strong>asiuvxmcn</strong>
-              <p>把重复问题写成笔记，把小工具沉淀成流程。</p>
+              <p>长期写 iOS 开发心得，偏 Objective-C、工程实践和问题复盘。</p>
             </div>
           </div>
           <div className="stats-grid">
             <div>
-              <b>05</b>
-              <span>预生成文章</span>
+              <b>01</b>
+              <span>迁移文章</span>
             </div>
             <div>
               <b>01</b>
@@ -101,7 +103,7 @@ export default function Home() {
               <span>后续更新</span>
             </div>
           </div>
-          <p className="note">访客阅读 HTML 文章页；我自己通过 GitHub 编辑 Markdown 源稿和页面内容。</p>
+          <p className="note">先把印象笔记里的开发心得迁移成可访问文章页，后面再批量整理成文章库。</p>
         </aside>
       </section>
 
@@ -120,38 +122,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" id="projects">
-        <div className="section-head">
-          <p>
-            <GitBranch size={15} aria-hidden="true" />
-            置顶项目
-          </p>
-          <h2>一些会继续生长的小东西</h2>
-        </div>
-        <div className="project-grid">
-          <article>
-            <div className="repo-line"><span /><strong>personal-homepage</strong></div>
-            <p>当前这个 GitHub Pages 主页，用来承载文章、wiki 入口和项目痕迹。</p>
-            <footer><em>HTML</em><em>CSS</em><em>Pages</em></footer>
-          </article>
-          <article>
-            <div className="repo-line"><span /><strong>knowledge-index</strong></div>
-            <p>未来的知识库索引，放常用链接、模板、方法和踩坑记录。</p>
-            <footer><em>Markdown</em><em>Notes</em><em>Wiki</em></footer>
-          </article>
-          <article>
-            <div className="repo-line"><span /><strong>workflow-lab</strong></div>
-            <p>把日常重复操作做成稳定流程，减少来回点击和重复判断。</p>
-            <footer><em>Automation</em><em>AI</em><em>Tools</em></footer>
-          </article>
-        </div>
-      </section>
-
       <section className="section" id="posts">
         <div className="section-head with-action">
           <div>
             <p>最新文章</p>
-            <h2>已经准备好的几篇文章</h2>
+            <h2>从印象笔记迁移的开发心得</h2>
           </div>
           <a className="button" href={newPostUrl}>新增文章</a>
         </div>

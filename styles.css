@@ -352,8 +352,15 @@ h1 {
 }
 
 .article-content p,
-.article-content ul {
+.article-content ul,
+.article-content ol,
+.article-content div,
+.article-content h4 {
   margin-top: 18px;
+}
+
+.article-content h4 {
+  font-size: 1.35rem;
 }
 
 .article-content li {
@@ -374,6 +381,33 @@ h1 {
   background: #0f172a;
   color: #dbeafe;
   padding: 18px;
+}
+
+.article-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 22px auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 18px 44px rgba(39, 70, 118, 0.14);
+}
+
+.note-content {
+  color: #334155;
+  line-height: 1.9;
+}
+
+.note-content a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.note-content span {
+  font: inherit;
+  color: inherit;
 }
 
 .article-footer {
