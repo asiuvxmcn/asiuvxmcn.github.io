@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GitHub Pages 个人主页搭建笔记 | asiuvxmcn</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="article-page">
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="../"><span class="avatar">A</span><span><strong>asiuvxmcn</strong><small>返回主页</small></span></a>
+        <nav><a href="../#posts">文章</a><a href="../#projects">项目</a><a class="write" href="https://github.com/asiuvxmcn/asiuvxmcn.github.io/edit/main/_posts/2026-07-16-github-pages-notes.md">编辑源稿</a></nav>
+      </header>
+      <article class="article-card">
+        <header>
+          <p class="article-label">文章</p>
+          <h1>GitHub Pages 个人主页搭建笔记</h1>
+          <p class="article-meta">2026-07-16 · GitHub / Pages / Blog</p>
+          <div class="article-tags"><span>GitHub</span><span>Pages</span><span>Blog</span></div>
+        </header>
+        <div class="article-content">
+          <p>GitHub Pages 最适合做轻量的个人主页：公开、稳定、免费，而且和仓库天然绑定。</p>
+          <p>这次主页采用了最直接的方式：</p>
+          <ul>
+            <li>仓库名使用 <code>asiuvxmcn.github.io</code>。</li>
+            <li>根目录放 <code>index.html</code> 和 <code>styles.css</code>。</li>
+            <li>文章源稿保留在 <code>_posts/</code>。</li>
+            <li>访客阅读 <code>posts/*.html</code>，这样文章页能加载完整样式。</li>
+          </ul>
+          <p>这个方案没有复杂后台，但权限模型很清楚：访客只能看，只有仓库拥有者能写和发布。</p>
+          <p>后续如果文章多起来，可以升级成自动读取 Markdown 的静态博客，比如 Jekyll、Astro 或 Eleventy。第一版先保持简单，能发布比一开始就完美更重要。</p>
+        </div>
+        <footer class="article-footer"><a class="button primary" href="../#posts">返回文章列表</a><a class="button" href="https://github.com/asiuvxmcn/asiuvxmcn.github.io/edit/main/_posts/2026-07-16-github-pages-notes.md">编辑 Markdown</a></footer>
+      </article>
+    </main>
+  </body>
+</html>

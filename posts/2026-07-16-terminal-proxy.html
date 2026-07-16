@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>一次终端 GitHub 代理排查 | asiuvxmcn</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="article-page">
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="../"><span class="avatar">A</span><span><strong>asiuvxmcn</strong><small>返回主页</small></span></a>
+        <nav><a href="../#posts">文章</a><a href="../#projects">项目</a><a class="write" href="https://github.com/asiuvxmcn/asiuvxmcn.github.io/edit/main/_posts/2026-07-16-terminal-proxy.md">编辑源稿</a></nav>
+      </header>
+      <article class="article-card">
+        <header>
+          <p class="article-label">文章</p>
+          <h1>一次终端 GitHub 代理排查</h1>
+          <p class="article-meta">2026-07-16 · Git / Proxy / Debug</p>
+          <div class="article-tags"><span>Git</span><span>Proxy</span><span>Debug</span></div>
+        </header>
+        <div class="article-content">
+          <p>这次遇到一个很典型的问题：SourceTree 可以正常拉取代码，但终端 <code>git push</code> 一直连接 GitHub 超时。</p>
+          <p>原因不是账号，也不是 GitHub 仓库权限，而是代理配置不一致。</p>
+          <p>机器当前系统代理跑在 <code>127.0.0.1:7897</code>，但是 Git 全局配置里还留着旧的 GitHub 专用代理 <code>127.0.0.1:7890</code>。图形应用会读系统代理，终端 Git 不一定会自动读，所以表现就分裂了。</p>
+          <p>最终修复方式是把 GitHub 专用代理更新到当前端口：</p>
+          <pre><code>git config --global http.https://github.com.proxy http://127.0.0.1:7897
+git config --global https.https://github.com.proxy http://127.0.0.1:7897</code></pre>
+          <p>这个问题提醒我：网络问题不要一上来猜认证，先把 DNS、代理、端口和最小请求拆开看。</p>
+        </div>
+        <footer class="article-footer"><a class="button primary" href="../#posts">返回文章列表</a><a class="button" href="https://github.com/asiuvxmcn/asiuvxmcn.github.io/edit/main/_posts/2026-07-16-terminal-proxy.md">编辑 Markdown</a></footer>
+      </article>
+    </main>
+  </body>
+</html>

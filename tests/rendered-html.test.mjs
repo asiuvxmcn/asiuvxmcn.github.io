@@ -29,23 +29,30 @@ test("server-renders the personal homepage", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /asiuvxmcn \| GitHub Profile/);
-  assert.match(html, /Hi, I&#x27;m asiuvxmcn/);
+  assert.match(html, /asiuvxmcn 的个人主页/);
+  assert.match(html, /你好，我是 asiuvxmcn/);
   assert.match(html, /asiuvxmcn\.github\.io\/new\/main/);
+  assert.match(html, /\/posts\/2026-07-16-public-home\.html/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|SkeletonPreview/);
 });
 
 test("keeps a GitHub Pages static entry", async () => {
-  const [indexHtml, styles, readme, guide] = await Promise.all([
+  const [indexHtml, styles, readme, guide, article] = await Promise.all([
     readFile(new URL("../index.html", import.meta.url), "utf8"),
     readFile(new URL("../styles.css", import.meta.url), "utf8"),
     readFile(new URL("../README.md", import.meta.url), "utf8"),
     readFile(new URL("../docs/how-to-publish.md", import.meta.url), "utf8"),
+    readFile(new URL("../posts/2026-07-16-public-home.html", import.meta.url), "utf8"),
   ]);
 
-  assert.match(indexHtml, /<title>asiuvxmcn \| GitHub Profile<\/title>/);
+  assert.match(indexHtml, /<title>asiuvxmcn 的个人主页<\/title>/);
+  assert.match(indexHtml, /\.\/posts\/2026-07-16-public-home\.html/);
+  assert.doesNotMatch(indexHtml, /href="\.\/_posts\/.*\.md"/);
   assert.match(indexHtml, /https:\/\/github\.com\/asiuvxmcn\/asiuvxmcn\.github\.io/);
-  assert.match(styles, /--green/);
+  assert.match(styles, /color-scheme:\s*light/);
+  assert.match(styles, /\.article-card/);
+  assert.match(article, /给公开主页留一点生长空间/);
+  assert.match(article, /\.\.\/styles\.css/);
   assert.match(readme, /https:\/\/asiuvxmcn\.github\.io\//);
   assert.match(guide, /GitHub Pages/);
 });
