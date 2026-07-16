@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "asiuvxmcn 的个人主页",
-  description: "一个用于记录文章、知识库和项目笔记的个人主页。",
+  title: "asiuvxmcn | GitHub Profile",
+  description: "asiuvxmcn 的个人主页，记录开发、工具、AI、知识库和项目笔记。",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

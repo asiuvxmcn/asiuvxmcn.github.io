@@ -29,8 +29,8 @@ test("server-renders the personal homepage", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /asiuvxmcn 的个人主页/);
-  assert.match(html, /把文章、笔记和小项目/);
+  assert.match(html, /asiuvxmcn \| GitHub Profile/);
+  assert.match(html, /Hi, I&#x27;m asiuvxmcn/);
   assert.match(html, /asiuvxmcn\.github\.io\/new\/main/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|SkeletonPreview/);
 });
@@ -43,9 +43,9 @@ test("keeps a GitHub Pages static entry", async () => {
     readFile(new URL("../docs/how-to-publish.md", import.meta.url), "utf8"),
   ]);
 
-  assert.match(indexHtml, /<title>asiuvxmcn 的个人主页<\/title>/);
+  assert.match(indexHtml, /<title>asiuvxmcn \| GitHub Profile<\/title>/);
   assert.match(indexHtml, /https:\/\/github\.com\/asiuvxmcn\/asiuvxmcn\.github\.io/);
-  assert.match(styles, /--paper/);
+  assert.match(styles, /--green/);
   assert.match(readme, /https:\/\/asiuvxmcn\.github\.io\//);
   assert.match(guide, /GitHub Pages/);
 });
